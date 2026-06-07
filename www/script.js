@@ -1,4 +1,4 @@
-// CONFIGURACIÓN DE LOS EPISODIOS ASOCIADOS A TUS CARPETAS DE GITHUB
+// LISTAS DE CAPÍTULOS DE MAICOL ADVENTURE
 const temporada1Episodios = [
     { title: "Episodio 1", file: "Temporada1/Ep 1 T1.mp4" },
     { title: "Episodio 2", file: "Temporada1/Ep 2 t1.mp4" },
@@ -14,21 +14,21 @@ const temporada1Episodios = [
 
 const temporada2Episodios = [
     { title: "Episodio 1", file: "Temporada2/Ep1 t2.mp4" },
-    { title: "Episodio 2", file: "Temporada2/Ep 2 t2.mp4" }, // ¡El más pesado creado en enero!
-    { title: "Episodio 3", file: "Temporada2/Ep 3 t2.mp4" },
+    { title: "Episodio 2", file: "Temporada2/Ep 2 t2.mp4" }, // Animado en enero en Quik/Wick Editor
+    { title: "Episodio 3", file: "Temporada2/Ep 3 t2.mp4" }, // Desde aquí en Flipaclip móvil
     { title: "Episodio 4", file: "Temporada2/Ep 4 t2.mp4" },
     { title: "Episodio 5", file: "Temporada2/Ep 5 T2.mp4" },
     { title: "Episodio 6", file: "Temporada2/Ep 6 T2.mp4" },
     { title: "Episodio 7", file: "Temporada2/Ep 7 t2.mp4" }
 ];
 
-// INICIALIZACIÓN AL CARGAR LA PÁGINA
+// INICIALIZADOR DEL DOM
 window.addEventListener('DOMContentLoaded', () => {
     renderEpisodes('slider-t1', temporada1Episodios, 'T1');
     renderEpisodes('slider-t2', temporada2Episodios, 'T2');
 });
 
-// FUNCIÓN PARA RENDERIZAR LAS MINIATURAS EN LOS CAROUSELES
+// FUNCIÓN DE RENDERIZACIÓN CON INTEGRACIÓN DE TU PÓSTER COMO THUMBNAIL
 function renderEpisodes(containerId, data, tag) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -39,41 +39,37 @@ function renderEpisodes(containerId, data, tag) {
         card.onclick = () => playVideo(ep.file, `${tag} - ${ep.title}`);
 
         card.innerHTML = `
-            <div class="thumbnail-fallback">
-                <div class="thumbnail-text">${tag} : E${index + 1}</div>
-            </div>
+            <div class="thumbnail-poster-bg"></div>
             <div class="card-overlay">
-                <div class="episode-number">${tag} • CAPÍTULO ${index + 1}</div>
-                <div class="episode-name">${ep.title}</div>
+                <div class="card-text-wrapper">
+                    <div class="episode-number">${tag} • CAPÍTULO ${index + 1}</div>
+                    <div class="episode-name">${ep.title}</div>
+                </div>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
-// CONTROL DE SCROLL POR FLECHAS (ESTILO SLIDER NETFLIX)
+// DESPLAZAMIENTO HORIZONTAL DEL SLIDER
 function scrollSlider(idSuffix, direction) {
     const slider = document.getElementById(`slider-${idSuffix}`);
     if (slider) {
-        const scrollAmount = 300 * 2; // Desplaza el equivalente a dos tarjetas por clic
+        const scrollAmount = 260 * 2; // Desplaza 2 tarjetas por pulsación
         slider.scrollLeft += (direction * scrollAmount);
     }
 }
 
-// CONMUTADOR DE SECCIONES DE LA BARRA SUPERIOR
+// CONTROL DE PESTAÑAS (NAVBAR)
 function switchSection(sectionId, element) {
-    // Desactivar todos los botones de la barra
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    // Activar botón actual
     element.classList.add('active');
 
-    // Ocultar todas las secciones de contenido
     document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-    // Mostrar la sección seleccionada
     document.getElementById(`section-${sectionId}`).classList.add('active');
 }
 
-// CONTROLADOR DEL REPRODUCTOR DE VIDEO
+// SISTEMA REPRODUCTOR DE VIDEO (MODAL INTERNO)
 function playVideo(videoPath, title) {
     const modal = document.getElementById('video-modal');
     const player = document.getElementById('main-video-player');
@@ -83,7 +79,9 @@ function playVideo(videoPath, title) {
         titleElement.innerText = `Reproduciendo: ${title}`;
         player.src = videoPath;
         modal.style.display = 'block';
-        player.play().catch(err => console.log("Auto-play prevenido por política del navegador. Presiona Play manualmente."));
+        player.play().catch(err => {
+            console.log("Interacción de usuario requerida para reproducir automáticamente.");
+        });
     }
 }
 
@@ -93,7 +91,7 @@ function closePlayer() {
 
     if (modal && player) {
         player.pause();
-        player.src = ""; // Limpia la memoria del buffer del video
+        player.src = ""; // Corta el streaming y libera la memoria en el teléfono
         modal.style.display = 'none';
     }
 }
