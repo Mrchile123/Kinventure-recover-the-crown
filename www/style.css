@@ -25,7 +25,7 @@ body {
 
 .logo {
     color: #e50914; 
-    font-size: 20pt;
+    font-size: 18pt;
     font-weight: bold;
     float: left;
     line-height: 70px;
@@ -38,9 +38,9 @@ body {
 
 .nav-btn {
     background: none; border: none;
-    color: #b3b3b3; font-size: 11pt; font-weight: bold;
-    margin-left: 15px; cursor: pointer;
-    transition: color 0.3s; padding: 5px 10px;
+    color: #b3b3b3; font-size: 10.5pt; font-weight: bold;
+    margin-left: 12px; cursor: pointer;
+    transition: color 0.3s; padding: 5px 8px;
 }
 
 .nav-btn:hover, .nav-btn.active { color: #ffffff; }
@@ -53,7 +53,7 @@ body {
     color: #aaa; font-size: 11pt; margin-bottom: 20px;
 }
 
-/* GRILLA DE CATÁLOGO (RESPONSIVA PARA TELÉFONOS) */
+/* GRILLA DE CATÁLOGO */
 .grid-series {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -94,7 +94,6 @@ body {
     border-top: 1px solid #2a2a2a;
 }
 
-/* CAPA HOVER PARA LOS PÓSTERS */
 .poster-hover-layer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: calc(100% - 37px);
@@ -146,7 +145,7 @@ body {
     cursor: pointer; font-weight: bold;
 }
 
-/* FILA DE EPISODIOS EN EL PANEL INTERNO */
+/* CARDS INTERNAS DE LOS EPISODIOS */
 .episodes-slider-wrapper { position: relative; width: 100%; }
 .episodes-row {
     display: block; white-space: nowrap;
@@ -157,7 +156,7 @@ body {
 
 .episode-thumb-card {
     display: inline-block;
-    width: 240px; height: 135px; /* Proporción limpia 16:9 para las miniaturas */
+    width: 240px; height: 135px;
     background-color: #000; margin-right: 12px;
     border-radius: 4px; overflow: hidden; position: relative;
     cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.5);
@@ -184,38 +183,20 @@ body {
 .arrow-left { left: 0; border-radius: 0 4px 4px 0; }
 .arrow-right { right: 0; border-radius: 4px 0 0 4px; }
 
-/* REPRODUCIDOR MODAL */
-.modal {
+/* MODALES GENERALES */
+.modal, .upcoming-modal {
     display: none; position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #000; z-index: 2000;
+    background-color: rgba(0,0,0,0.85); z-index: 2000;
 }
 .modal-content {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 100%; max-width: 900px; background-color: #000; padding: 10px;
 }
-.close-modal {
-    background-color: #e50914; color: #fff; border: none;
-    padding: 8px 14px; font-weight: bold; border-radius: 4px;
-    float: right; cursor: pointer; margin-bottom: 10px;
-}
-.modal-title { font-size: 11pt; margin-bottom: 10px; color: #aaa; clear: both; }
-.video-wrapper { position: relative; width: 100%; padding-top: 56.25%; }
-.video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; }
-
-/* MODAL DE PROXIMAMENTE */
-.upcoming-modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 1600;
-}
 .upcoming-content {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     background-color: #222; border-radius: 6px; padding: 25px;
     width: 85%; max-width: 400px; text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     border: 1px solid #333;
 }
 .upcoming-badge {
@@ -223,156 +204,48 @@ body {
     font-weight: bold; padding: 3px 8px; border-radius: 3px;
     display: inline-block; margin-bottom: 10px;
 }
-.upcoming-content h3 { font-size: 14pt; margin-bottom: 10px; color: #fff; }
-.upcoming-content p { font-size: 10pt; color: #ccc; line-height: 1.4; margin-bottom: 20px; }
-.close-upcoming-btn {
-    background-color: #fff; color: #000; border: none; font-weight: bold;
-    padding: 8px 20px; border-radius: 4px; cursor: pointer; font-size: 10pt;
+.close-modal, .close-upcoming-btn {
+    background-color: #e50914; color: #fff; border: none;
+    padding: 8px 14px; font-weight: bold; border-radius: 4px; cursor: pointer;
 }
+.close-upcoming-btn { background-color: #fff; color: #000; font-size: 10pt; padding: 8px 20px; }
 .close-upcoming-btn:hover { background-color: #e50914; color: #fff; }
 
-/* CONTENEDORES INFORMATIVOS */
-.info-card, .more-card {
-    background-color: #1c1c1c; padding: 25px; border-radius: 6px;
-    max-width: 650px; margin: 15px auto; border: 1px solid #2d2d2d;
-}
-.subtitle { color: #808080; font-style: italic; margin-bottom: 10px; }
-.info-body p { font-size: 11pt; color: #d3d3d3; margin-bottom: 10px; }
-.external-link {
-    display: inline-block; background-color: #e50914; color: white;
-    text-decoration: none; padding: 10px 15px; border-radius: 4px; font-weight: bold;
-}
+.video-wrapper { position: relative; width: 100%; padding-top: 56.25%; }
+.video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; }
+.modal-title { font-size: 11pt; margin-bottom: 10px; color: #aaa; }
 
-.nav-links {
-    float: right;
-    line-height: 70px;
+/* CONTENEDORES DE INFORMACIÓN, RELEASES Y REDES */
+.info-card, .releases-card, .more-card {
+    background-color: #1c1c1c; padding: 25px; border-radius: 8px;
+    max-width: 700px; margin: 15px auto; border: 1px solid #2d2d2d;
 }
+.subtitle { color: #808080; font-style: italic; margin-bottom: 18px; font-size: 10pt; }
 
-.nav-btn {
-    background: none;
-    border: none;
-    color: #b3b3b3;
-    font-size: 11pt;
-    font-weight: bold;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    padding: 5px 10px;
+.info-body h3 { font-size: 12pt; color: #e50914; margin: 15px 0 6px 0; }
+.info-body p { font-size: 10.5pt; color: #d3d3d3; line-height: 1.5; margin-bottom: 10px; }
+.highlight-info-text { margin-top: 20px; background-color: #262626; padding: 10px; border-radius: 4px; border-left: 3px solid #e50914; }
+
+.releases-body p { font-size: 11pt; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
+.release-action-btn {
+    display: inline-block; background-color: #238636; color: #fff;
+    text-decoration: none; padding: 12px 20px; border-radius: 5px;
+    font-weight: bold; font-size: 11pt; margin-top: 10px; transition: background 0.2s;
 }
+.release-action-btn:hover { background-color: #2ea043; }
 
-.nav-btn:hover, .nav-btn.active {
-    color: #ffffff;
+/* REPOSITORIO DE ENLACES DE REDES */
+.links-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+.social-link {
+    display: block; padding: 14px; border-radius: 6px; text-decoration: none;
+    color: #fff; font-weight: bold; font-size: 11pt; transition: transform 0.2s;
 }
-
-/* SECCIONES */
-.content-section {
-    display: none;
-}
-
-.content-section.active {
-    display: block;
-}
-
-.main-content {
-    padding: 10px 4% 40px 4%;
-}
-
-/* NUEVA SECCIÓN HERO BANNER (PÓSTER DE FONDO) */
-.hero-banner {
-    position: relative;
-    width: 100%;
-    height: 350px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #000;
-}
-
-/* Imagen de tu póster adaptada horizontalmente */
-.hero-cover-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('poster-Maicol-adventure.png');
-    background-size: cover;
-    background-position: center 20%; /* Enfoca los rostros de tus personajes */
-    opacity: 0.5; /* Opacidad para que el texto encima se lea perfecto */
-}
-
-/* Degradado estilo Netflix sobre el póster */
-.hero-banner::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(20,20,20,0.95) 30%, rgba(20,20,20,0.2) 100%),
-                linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,0) 40%);
-}
-
-.hero-content {
-    position: absolute;
-    left: 4%;
-    bottom: 30px;
-    z-index: 2;
-    max-width: 500px;
-}
-
-.hero-title {
-    font-size: 28pt;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    color: #fff;
-}
-
-.hero-synopsis {
-    font-size: 11pt;
-    line-height: 1.4;
-    color: #e2e2e2;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
-}
-
-.play-hero-btn {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 11pt;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s;
-}
-
-.play-hero-btn:hover {
-    background-color: #e50914;
-    color: #fff;
-    transform: scale(1.03);
-}
-
-/* FILAS DE EPISODIOS */
-.slider-container {
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.slider-title {
-    font-size: 15pt;
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
-.slider-wrapper {
-    position: relative;
-    display: block;
-}
-
-.slider-row {
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
+.social-link:hover { transform: translateX(5px); }
+.yt { background-color: #c4302b; }
+.tt { background-color: #010101; border: 1px solid #333; }
+.fb { background-color: #3b5998; }
+.icon-media { margin-right: 10px; font-size: 13pt; }
+x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
     padding: 10px 0;
