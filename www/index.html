@@ -65,13 +65,37 @@
         </div>
     </div>
 
-    <section id="section-fanarts" class="content-section iframe-section-container">
-        <iframe src="https://sites.google.com/view/fanartspage/p%C3%A1gina-principal" class="embedded-web-view" allowfullscreen></iframe>
+    <section id="section-fanarts" class="main-content content-section">
+        <div class="info-card text-center">
+            <h2>Galería de Fan-Arts</h2>
+            <p class="subtitle">Explora los dibujos de la comunidad</p>
+            <p style="margin-bottom: 20px; color: #ccc;">He creado una ventana interna integrada para ver los diseños de Google Sites de forma fluida y segura.</p>
+            <button class="action-web-btn" onclick="openSecureWindow('https://sites.google.com/view/fanartspage/p%C3%A1gina-principal')">
+                🎨 Abrir Galería de Fan-Arts
+            </button>
+        </div>
     </section>
 
-    <section id="section-releases" class="content-section iframe-section-container">
-        <iframe src="https://github.com/Mrchile123/maicol-adventure-app/releases" class="embedded-web-view" allowfullscreen></iframe>
+    <section id="section-releases" class="main-content content-section">
+        <div class="info-card text-center">
+            <h2>Actualizaciones de la App</h2>
+            <p class="subtitle">Repositorio Oficial en GitHub</p>
+            <p style="margin-bottom: 20px; color: #ccc;">Busca si existen nuevas funciones disponibles o descarga versiones APK de forma directa.</p>
+            <button class="action-web-btn github-btn" onclick="openSecureWindow('https://github.com/Mrchile123/maicol-adventure-app/releases')">
+                🚀 Buscar Actualizaciones en GitHub
+            </button>
+        </div>
     </section>
+
+    <div id="secure-web-modal" class="web-overlay-modal">
+        <div class="web-overlay-header">
+            <span id="web-overlay-title">Cargando...</span>
+            <button class="close-web-btn" onclick="closeSecureWindow()">&times; Volver a la App</button>
+        </div>
+        <div class="web-overlay-body">
+            <iframe id="secure-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <div id="upcoming-modal" class="upcoming-modal">
         <div class="upcoming-content">
@@ -127,7 +151,6 @@
             
             <div class="video-wrapper">
                 <video id="main-video-player" controls autoplay playsinline autopictureinpicture pip="true"></video>
-                
                 <button id="next-episode-btn" class="netflix-next-btn" onclick="playNextEpisode()">
                     Siguiente Episodio ⏭️
                 </button>
