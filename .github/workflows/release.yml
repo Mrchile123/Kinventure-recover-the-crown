@@ -3,13 +3,13 @@ name: Generar APK de Maicol Adventure
 on:
   push:
     tags:
-      - 'v*' # Se activa cuando creas una etiqueta de versión (ej: v1.7)
+      - 'v*' # Se activa cuando creas una etiqueta de versión (ej: v1.8)
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # 🔥 Forzamos al contenedor de GitHub a usar Node 24 para evitar la obsolescencia
+    # Forzamos al contenedor de GitHub a usar Node 24 para evitar la obsolescencia
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
@@ -20,7 +20,7 @@ jobs:
     - name: 2. Configurar entorno de Node.js a la versión 24
       uses: actions/setup-node@v4
       with:
-        node-version: '24' # 🔥 Cambiado de 20 a 24 para solucionar el error
+        node-version: '24'
 
     - name: 3. Configurar entorno de Java
       uses: actions/setup-java@v4
@@ -28,11 +28,8 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    - name: 4. Instalar dependencias y Generar Iconos
-      run: |
-        npm install
-        npm install @capacitor/assets --save-dev
-        npx capacitor-assets generate --android || true 
+    - name: 4. Instalar dependencias del proyecto
+      run: npm install
 
     - name: 5. Inicializar Capacitor apuntando a carpeta www
       run: |
@@ -59,6 +56,6 @@ jobs:
     - name: 9. Publicar la APK en Releases
       uses: softprops/action-gh-release@v2
       with:
-        files: android/app/build/outputs/apk/debug/app-debug.apk
+        files: android/app/build/outputs/apk/debug/Maicol-adventure-app.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
