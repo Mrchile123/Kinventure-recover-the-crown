@@ -3,11 +3,15 @@ name: Generar APK de Maicol Adventure
 on:
   push:
     tags:
-      - 'v*' # Se activa cuando creas una etiqueta de versión (ej: v1.8)
+      - 'v*' # Se activa cuando creas una etiqueta de versión (ej: v1.9)
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # 🔥 LE DA PERMISOS A GITHUB PARA SUBIR LA APK A RELEASES
+    permissions:
+      contents: write
 
     # Forzamos al contenedor de GitHub a usar Node 24 para evitar la obsolescencia
     env:
@@ -56,6 +60,6 @@ jobs:
     - name: 9. Publicar la APK en Releases
       uses: softprops/action-gh-release@v2
       with:
-        files: android/app/build/outputs/apk/debug/Maicol-adventure-app.apk
+        files: android/app/build/outputs/apk/debug/app-debug.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
